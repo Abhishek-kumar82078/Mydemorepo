@@ -1,0 +1,615 @@
+            ARRAYS (EASY) PROBLEMS
+
+
+1. Given an array (or string), the task is to reverse the array/string.
+Examples : 
+Input  : arr[] = {1, 2, 3}
+Output : arr[] = {3, 2, 1}
+
+Input :  arr[] = {4, 5, 1, 2}
+Output : arr[] = {2, 1, 5, 4}
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    for(int i=0;i<n/2;i++)
+    {
+        swap(arr[i],arr[n-i-1]);
+    }
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+
+    return 0;
+}
+
+2. Write a function to return minimum and maximum in an array. 
+Your program should make the minimum number of comparisons. 
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    int maxno=INT_MIN,minno=INT_MAX;
+    for(int i=0;i<n;i++)
+     {
+         cin>>arr[i];
+         if(arr[i]>maxno)
+            maxno=arr[i];
+         if(arr[i]<minno)
+            minno=arr[i];
+     }
+
+        cout<<"Max and min no are respectively "<<maxno<<"  & "<<minno;
+
+    return 0;
+}
+
+
+3.Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+
+Code:-
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    int j=0,k=n-1;
+    for(int i=0;i<n;i++)
+     {
+         cin>>arr[i];
+     }
+     int i=0;
+     while(i<=k)
+     {
+         if(arr[i]==0)
+         {
+                swap(arr[i],arr[j]);
+                 j++;
+                 i++;
+         }
+         else if(arr[i]==2  )
+         {
+              swap(arr[i],arr[k]);
+                k--;
+         }
+
+         else if(arr[i]==1)
+            i++;
+     }
+     for(int l=0;l<n;l++)
+     {
+         cout<<arr[l];
+     }
+
+
+    return 0;
+}
+
+
+4.Given an array, rotate the array by one position in clock-wise direction.
+
+Code:- 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    int j=0,k=n-1;
+    for(int i=0;i<n;i++)
+     {
+         cin>>arr[i];
+     }
+     int last=arr[n-1];
+     for(int i=n-2;i>=0;i--)
+     {
+         arr[i+1]=arr[i];
+     }
+     arr[0]=last;
+     for(int l=0;l<n;l++)
+     {
+         cout<<arr[l];
+     }
+
+
+    return 0;
+}
+
+5.*Given two arrays a[] and b[] of size n and m respectively. The task is to find union between these two arrays.
+Union of the two arrays can be defined as the set containing distinct elements from both the arrays. If there are repetitions, then only one occurrence of the element should be printed in union.
+
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    int arr[n],arr2[m];
+    for(int i=0;i<n;i++)
+     {
+         cin>>arr[i];
+     }
+      for(int i=0;i<m;i++)
+     {
+         cin>>arr2[i];
+     }
+     int unionarr[n+m];
+     sort(arr,arr+n);
+     sort(arr2,arr2+m);
+     int i=0,j=0,k=0,l=0;
+     while(i<n && j<m)
+     {
+         if(arr[i]<arr2[j])
+            {
+                unionarr[k]=arr[i];
+                i++;
+            }
+         else if(arr[i]>arr2[j])
+            unionarr[k]=arr2[j++];
+         else
+         {
+             unionarr[k]=arr[i++];
+             j++;
+         }
+         k++;
+
+     }
+     if(i<n)
+     {
+         while(i<n)
+            unionarr[k++]=arr[i++];
+     }
+     if(j<m)
+     {
+         while(j<m)
+            unionarr[k++]=arr[j++];
+     }
+     for(int l=0;l<k;l++)
+     {
+         cout<<unionarr[l];
+     }
+
+
+    return 0;
+}
+
+6.Given an array of n integers and q queries. Write a program to find floor value of mean in range l to r for each query in a new line.
+
+Code:- 
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,q;
+    cin>>n>>q;
+    int arr[n],qarr[2*q];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+     for(int i=0;i<(2*q);i++)
+        cin>>qarr[i];
+     for(int i=0;i<(2*q);i+=2)
+     {
+         int l=qarr[i];
+         int r=qarr[i+1];
+         int sum=0;
+         int range=r-l+1;
+         while(l<=r)
+         {
+             sum+=arr[l];
+             l++;
+         }
+         cout<<sum/range<<endl;
+     }
+    return 0;
+}
+
+
+7. *Given an array a[ ] of N elements. Consider array as a circular array i.e. element after an is a1. The task is to find maximum sum of the absolute difference between consecutive elements with rearrangement of array elements allowed i.e. after any rearrangement of array elements find |a1 – a2| + |a2 – a3| + …… + |an-1 – an| + |an – a1|.
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    sort(arr,arr+n);
+    int i=0,j=n-1,sum=0;
+    while(i<j)
+    {
+      sum+=abs(arr[j] - arr[i]);
+      i++;
+      sum+=abs(arr[j]-arr[i]);
+      j--;
+    }
+    sum+=abs(arr[i]-arr[0]);
+    cout<<sum<<endl;
+
+    return 0;
+}
+
+
+8. *Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+
+    int sum=0,max_sum=INT_MIN;
+    for(int i=0;i<n;i++)
+    {
+        sum=max(sum+arr[i],arr[i]);
+        if(max_sum<sum)
+            max_sum=sum;
+    }
+    cout<<max_sum<<endl;
+
+    return 0;
+}
+
+
+9. Given an array arr[] of N non-negative integers representing the height of blocks. If width of each block is 1, compute how much water can be trapped between the blocks during the rainy season. 
+
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int h[n-1];
+    h[n-2]=arr[n-1];
+    int sum=0;
+    for(int i=n-3;i>=0;i--)
+    {
+        h[i]=max(h[i+1],arr[i+1]);
+    }
+    int lft=arr[0];
+    for(int i=1;i<n-1;i++)
+    {
+        lft=max(lft,arr[i-1]);
+        if(min(lft,h[i])-arr[i] >0)
+            sum+=min(lft,h[i])-arr[i];
+    }
+    cout<<sum<<endl;
+
+    return 0;
+}
+
+
+          ARRAYS (Medium & Hard) PROBLEMS
+1. Write a program where you need to print all the subarrays and all the subsequences of an array, based on the user input.
+A. A subarray is a contiguous part of an array. An array that is inside another array. 
+For example, consider the array [1, 2, 3, 4]. There are 10 non-empty sub-arrays. The subarrays are (1), (2), (3), (4), (1,2), (2,3), (3,4), (1,2,3), (2,3,4) and (1,2,3,4)
+B. A subsequence is a sequence that can be derived from another sequence by zero or more elements, without changing the order of the remaining elements. 
+For the same example, there are 15 sub-sequences. They are (1), (2), (3), (4), (1,2), (1,3),(1,4), (2,3), (2,4), (3,4), (1,2,3), (1,2,4), (1,3,4), (2,3,4), (1,2,3,4).
+
+COde:-
+#include<bits/stdc++.h>
+using namespace std;
+void subarray(int arr[],int n)
+{
+    vector<int>ans;
+    for(int i=0;i<n;i++)
+    {
+        int mid=arr[i];
+        ans.push_back(mid);
+        for(int j=i+1;j<n;j++)
+        {
+            mid=mid*10+arr[j];
+            ans.push_back(mid);
+        }
+    }
+    for(auto x:ans)
+        cout<<x<<" ";
+}
+void subsequence(int arr[],int n)
+{
+    for(int i=1;i<=(1<<n);i++)
+    {
+      for(int j=0;j<=n-1;j++)
+      {
+          if(i&(1<<j))
+            cout<<arr[j];
+
+      }
+      cout<<endl;
+
+    }
+
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int choice;
+    cin>>choice;
+    if(choice==1)
+     subarray(arr,n);
+    else if(choice==2)
+        subsequence(arr,n);
+    else cout<<"Invalid Choice";
+    return 0;
+}
+
+
+2. Given an array arr[] denoting heights of N towers and a positive integer K, you have to modify the height of each tower either by increasing or decreasing them by K only once. After modifying, height should be a non-negative integer. 
+Find out what could be the possible minimum difference of the height of shortest and longest towers after you have modified each tower.
+
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k;
+    cin>>k>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int res=INT_MAX;
+    sort(arr,arr+n);
+    for(int i=0;i<n-1;i++)
+    {
+        int mn=min(arr[0]+k,arr[i]-k);
+        int mx=max(arr[i-1]+k,arr[n-1]-k);
+
+        if(res>abs(mx-mn))
+            res=abs(mx-mn);
+    }
+    cout<<res;
+    return 0;
+}
+
+3.Given an array of N integers arr[] where each element represents the max number of steps that can be made forward from that element. Find the minimum number of jumps to reach the end of the array (starting from the first element). If an element is 0, then you cannot move through that element.
+Note: Return -1 if you can't reach the end of the array.
+
+
+COde:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int min_steps=06,step=arr[0];
+    int i=1,mx=0;
+    while(i<n)
+    {
+        if(mx!=0)
+        {
+            if(arr[mx]-i+mx-step < arr[i]-step)
+                mx=i;
+        }
+
+        else
+            mx=i;
+        step--;
+        if(step==0)
+        {
+            step=arr[mx]-i+mx;
+            mx=0;
+            min_steps++;
+        }
+        if(step>0 || n-1==i)
+          i++;
+        else
+          return -1;
+    }
+    if(i<n)
+        cout<<"-1"<<endl;
+    else
+    cout<<min_steps<<endl;
+    return 0;
+}
+
+5.You are given an array, prices where prices[i] is the price of a given stock on the ith day.
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+        int res=0,mncp=arr[0];
+    for(int i=1;i<n;i++)
+    {
+        mncp=min(mncp,arr[i]);
+        res=max(res,arr[i]-mncp);
+    }
+
+    cout<<res<<endl;
+    return 0;
+}
+
+6.Given an array A[ ] of positive integers of size N, where each value represents the number of chocolates in a packet. Each packet can have a variable number of chocolates. There are M students, the task is to distribute chocolate packets among M students such that :
+1. Each student gets exactly one packet.
+2. The difference between maximum number of chocolates given to a student and minimum number of chocolates given to a student is minimum.
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    int n,m;
+    cin>>n>>m;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+        int res=INT_MAX,mncp=arr[0];
+    sort(arr,arr+n);
+    for(int i=0;i<n-m;i++)
+    {
+       res=min(res,arr[i+m-1]-arr[i]);
+    }
+
+    cout<<res<<endl;
+    }
+    return 0;
+}
+
+7.Given an array of size n and a range [a, b]. The task is to partition the array around the range such that the array is divided into three parts.
+1) All elements smaller than a come first.
+2) All elements in range a to b come next.
+3) All elements greater than b appear in the end.
+The individual elements of three sets can appear in any order. You are required to return the modified array.
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int a,b;
+    cin>>a>>b;
+    int left=0;
+    for(int i=0;i<n;i++)
+    {
+       if(arr[i]<a)
+        swap(arr[left++],arr[i]);
+    }
+    for(int i=left;i<n;i++)
+    {
+       if(arr[i]<b)
+        swap(arr[left++],arr[i]);
+    }
+    for(int i=0;i<n;i++)
+    {
+    cout<<arr[i]<<" ";
+    }
+    return 0;
+}
+
+
+8. You are given an array of n integers. You want to modify the array so that it is increasing, i.e., every element is at least as large as the previous element.
+On each move, you may increase the value of any element by one. What is the minimum number of moves required?
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int res=0;
+    for(int i=1;i<n;i++)
+    {
+        if(arr[i]<arr[i-1])
+            res+=arr[i-1]-arr[i];
+    }
+    cout<<res<<endl;
+    return 0;
+}
+
+9.  
+ Given a Integer array A[] of n elements. Your task is to complete the function PalinArray. Which will return 1 if all the elements of the Array are palindrome otherwise it will return 0.
+
+Code:-
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    int i;
+    for(i=0;i<n;i++)
+    {
+        int curr=arr[i];
+        int rev=0;
+        while(curr)
+        {
+            rev*=10;
+            rev+=curr%10;
+            curr/=10;
+        }
+        if(rev!=arr[i])
+            break;
+    }
+    if(i!=n)
+        cout<<"0"<<endl;
+    else
+        cout<<"1"<<endl;
+    }
+    return 0;
+}
